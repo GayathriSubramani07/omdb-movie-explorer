@@ -59,13 +59,25 @@ omdb-movie-explorer/
 │── pom.xml
 │── README.md
 
-## 🚀 How to Run the Project
-### 1️⃣ Clone the Repository
-```bash
-git clone https://github.com/GayathriSubramani07/omdb-movie-explorer.git
-cd omdb-movie-explorer
-2️⃣ Open in Eclipse / IntelliJ
+## ✨ Features
 
-Import as Maven Project.
+- 🔍 Search movies & series by title  
+- 🎬 Movie details page (Plot, Director, Actors, Rating, Poster)  
+- ⭐ Add movies to Favorites (stored in localStorage)  
+- ⚡ Caffeine Cache to reduce OMDB calls  
+  - Cache TTL: 5 minutes  
+  - Max size: 100  
+- 📱 Responsive UI  
+- 🎨 Modern gradient design (Purple → Pink → Blue)  
+- 🧩 Clean REST APIs  
+- 🚀 Runs fully locally
+
+- ## 📌 Final Notes
+
+This project follows:
+- REST standards  
+- Clean folder structure  
+- Good UI/UX  
+- Local caching for performance  
 
 
