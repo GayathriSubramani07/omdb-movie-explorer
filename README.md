@@ -60,64 +60,12 @@ omdb-movie-explorer/
 │── README.md
 
 ## 🚀 How to Run the Project
-
 ### 1️⃣ Clone the Repository
 ```bash
 git clone https://github.com/GayathriSubramani07/omdb-movie-explorer.git
 cd omdb-movie-explorer
-
 2️⃣ Open in Eclipse / IntelliJ
 
 Import as Maven Project.
 
-3️⃣ Configure OMDB API Key
 
-Open src/main/resources/application.properties and update:
-
-omdb.api.key=YOUR_API_KEY
-omdb.api.url=http://www.omdbapi.com/
-
-
-➡️ Replace YOUR_API_KEY with your key from https://www.omdbapi.com/apikey.aspx
-
-4️⃣ Run the Spring Boot Application
-
-Run:
-
-OmbdMovieExplorerApplication.java
-
-
-or in terminal:
-
-mvn spring-boot:run
-
-5️⃣ Open UI in Browser
-
-Open:
-
-http://localhost:8080/index.html
-
-
-✔ Search movies
-✔ View details
-✔ Add to favorites
-
-## ✨ Features
-
-- 🔍 Search movies & series by title  
-- 🎬 Movie details page (Plot, Director, Actors, Rating, Poster)  
-- ⭐ Add movies to Favorites (stored in localStorage)  
-- ⚡ Caffeine Cache to reduce OMDB calls  
-  - Cache TTL: 5 minutes  
-  - Max size: 100  
-- 📱 Responsive UI  
-- 🎨 Modern gradient design (Purple → Pink → Blue)  
-- 🧩 Clean REST APIs  
-- 🚀 Runs fully locally
-## 📌 Final Notes
-
-This project follows:
-- REST standards  
-- Clean folder structure  
-- Good UI/UX  
-- Local caching for performance  
