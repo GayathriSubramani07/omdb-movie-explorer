@@ -1,83 +1,184 @@
-# 🎬 OMDB Movie Explorer
+🎬 OMDB Movie Explorer
 
-OMDB Movie Explorer is a lightweight full-stack application that allows users to search for movies, view detailed information, and save favorites — powered by the **OMDB API**.
+A full-stack movie search and details application built using Spring Boot (Java) and a HTML/CSS/JavaScript frontend.
+It integrates with the public OMDB API to fetch movie information, while exposing clean REST APIs, implementing local caching, and providing a modern, responsive UI.
 
-This project includes:
+⭐ Features
+🔍 Search Dashboard
 
-- A **Spring Boot backend** (REST API)
-- A **Frontend UI** built with **HTML + CSS + JavaScript**
-- **In-memory caching using Caffeine**
-- **Responsive UI**
-- **Favorites system using LocalStorage**
+Search movies, series, or episodes by title
 
----
+Get instant results with posters, titles, and release years
 
-## 🚀 Features
+🎬 Movie Detail View
 
-### 🔹 **Search Dashboard**
-- Search movies/series using a simple search bar  
-- Fast results with caching  
-- Displays poster, title, and release year  
+Full movie details:
 
-### 🔹 **Movie Detail Page**
-- High-quality poster  
-- Plot, Director, Genre, Actors, IMDb Rating  
-- Add to Favorites ❤️  
+Plot
 
-### 🔹 **Favorites Page**
-- Stores user favorites using LocalStorage  
-- Beautiful card layout  
-- Remove favorite functionality  
+Genre
 
-### 🔹 **Caching System (Backend)**
-- Caffeine cache → 5 minutes TTL  
-- Maximum 100 entries  
-- Improves performance  
-- Reduces OMDB API calls  
+Director
 
-### 🔹 **Clean REST API Endpoints**
-| Endpoint | Description |
-|----------|-------------|
-| GET `/api/movies/search?title=Batman` | Search movie by title |
-| GET `/api/movies/details?id=tt1234567` | Get full movie details |
+Actors
 
----
+IMDb Rating
 
-## 🏗️ Project Structure
+Poster
 
+Stylish and responsive design
+
+⭐ Favorites System
+
+Add movies to Favorites
+
+Saved in localStorage (no backend DB needed)
+
+Remove favorites anytime
+
+⚡ Performance Features (Backend)
+
+Caffeine Cache
+
+TTL: 5 minutes
+
+Max size: 100 entries
+
+Reduces OMDB API calls significantly
+
+Clean RESTful endpoints
+
+API Key handled via application.properties
+
+💻 UI Highlights
+
+Modern gradient theme (Purple → Pink → Blue)
+
+Mobile-friendly
+
+Smooth card hover effects
+
+Clean layout for search, results grid, and details page
+
+🗂 Project Structure
 omdb-movie-explorer/
-│── src/
-│ ├── main/
-│ │ ├── java/com/omdb/...
-│ │ └── resources/application.properties
-│── static/
-│ ├── index.html
-│ ├── details.html
-│ ├── favorites.html
-│ ├── style.css
-│ └── app.js
-│── pom.xml
-│── README.md
+│
+├── src/
+│   ├── main/
+│   │   ├── java/com/omdb/omdb_movie_explorer/
+│   │   │   ├── OmdbMovieExplorerApplication.java
+│   │   │   ├── config/
+│   │   │   │   ├── CacheConfig.java
+│   │   │   │   └── RestTemplateConfig.java
+│   │   │   ├── controller/
+│   │   │   │   └── MovieController.java
+│   │   │   ├── model/
+│   │   │   │   ├── MovieDetailResponse.java
+│   │   │   │   ├── MovieSearchResponse.java
+│   │   │   │   └── MovieSummary.java
+│   │   │   └── service/
+│   │   │       ├── MovieService.java
+│   │   │       └── MovieServiceImpl.java
+│   │   │
+│   │   └── resources/
+│   │       ├── static/
+│   │       │   ├── index.html
+│   │       │   ├── details.html
+│   │       │   ├── favorites.html
+│   │       │   ├── app.js
+│   │       │   └── style.css
+│   │       └── application.properties
+│   │
+│   └── test/java/...
+│
+├── pom.xml
+└── README.md
 
-## ✨ Features
+🔗 REST API Endpoints (Clean & Simplified)
+Method	Endpoint	Description
+GET	/api/movies/search?title=Batman	Search movies by title
+GET	/api/movies/details?id=tt2975590	Get full movie details by IMDb ID
 
-- 🔍 Search movies & series by title  
-- 🎬 Movie details page (Plot, Director, Actors, Rating, Poster)  
-- ⭐ Add movies to Favorites (stored in localStorage)  
-- ⚡ Caffeine Cache to reduce OMDB calls  
-  - Cache TTL: 5 minutes  
-  - Max size: 100  
-- 📱 Responsive UI  
-- 🎨 Modern gradient design (Purple → Pink → Blue)  
-- 🧩 Clean REST APIs  
-- 🚀 Runs fully locally
+Backend calls OMDB API internally, applies caching, and returns simplified JSON to the UI.
 
-- ## 📌 Final Notes
+🚀 How to Run the Project
+1️⃣ Clone the Repository
+git clone https://github.com/GayathriSubramani07/omdb-movie-explorer.git
+cd omdb-movie-explorer
 
-This project follows:
-- REST standards  
-- Clean folder structure  
-- Good UI/UX  
-- Local caching for performance  
+2️⃣ Import into IDE
+
+Open in Eclipse or IntelliJ, import as a Maven Project.
+
+3️⃣ Configure OMDB API Key
+
+Open:
+
+src/main/resources/application.properties
+
+
+Update:
+
+omdb.api.key=YOUR_API_KEY
+omdb.api.url=http://www.omdbapi.com/
+
+
+Get your key here:
+👉 https://www.omdbapi.com/apikey.aspx
+
+4️⃣ Run the Backend
+
+Run the Spring Boot app:
+
+mvn spring-boot:run
+
+
+or run OmdbMovieExplorerApplication.java directly.
+
+Backend starts at:
+
+http://localhost:8080/
+
+5️⃣ Run the UI
+
+Open in browser:
+
+http://localhost:8080/index.html
+
+
+✔ Search movies
+✔ View details
+✔ Add to favorites
+
+📦 Tech Stack
+Backend
+
+Java 17
+
+Spring Boot
+
+Caffeine Cache
+
+RestTemplate
+
+Maven
+
+Frontend
+
+HTML5
+
+CSS3
+
+JavaScript (Vanilla)
+
+🧪 Testing
+
+Test using the browser or Postman:
+
+Example:
+
+GET http://localhost:8080/api/movies/search?title=superman
+GET http://localhost:8080/api/movies/details?id=tt2975590
+
 
 
