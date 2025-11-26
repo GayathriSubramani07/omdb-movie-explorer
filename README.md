@@ -108,9 +108,9 @@ Configured in:
 CacheConfig.java
 
 Setting         	Value
-Cache Type	     Caffeine
-Expiry	         5 minutes
-Max Size	        100
+**Cache Type**	     Caffeine
+**Expiry**	         5 minutes
+**Max Size**	        100
 
 **Benefits**
 
