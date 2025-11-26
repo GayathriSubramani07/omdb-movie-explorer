@@ -107,13 +107,14 @@ Configured in:
 
 CacheConfig.java
 
-Setting         	Value
-**Cache Type :**	     
-Caffeine
+**Set Value:**
+
+**Cache Type :**	Caffeine   
+
 **Expiry:**	
 5 minutes
-**Max Size:**	      
-100
+
+**Max Size:**	  100
 
 **Benefits**
 
