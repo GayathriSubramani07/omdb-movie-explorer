@@ -172,6 +172,7 @@ Remove movies from favorites
 Neon styled cards
 
 **📦 Technologies Used**
+
 **Backend**
 
 Spring Boot 3
