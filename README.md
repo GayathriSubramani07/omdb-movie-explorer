@@ -10,6 +10,7 @@ A beautiful Galaxy-Neon themed Movie Explorer built using:
 Search, explore, view details, and save your favorite movies — all with a futuristic neon UI.
 
 **🚀 Features**
+
 **🔍 Search Movies**
 
 Search any movie, series, or episode.
@@ -106,11 +107,12 @@ Configured in:
 
 CacheConfig.java
 
-Setting	Value
-Cache Type	Caffeine
-Expiry	5 minutes
-Max Size	100
-Benefits
+Setting         	Value
+Cache Type	     Caffeine
+Expiry	         5 minutes
+Max Size	        100
+
+**Benefits**
 
 ✔ Faster repeated searches
 
