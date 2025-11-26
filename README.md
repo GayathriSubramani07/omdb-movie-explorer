@@ -1,5 +1,5 @@
-🌌 OMDB Movie Explorer – Galaxy Neon Edition
-
+**🌌 OMDB Movie Explorer – Galaxy Neon Edition
+**
 A beautiful Galaxy-Neon themed Movie Explorer built using:
 
 ✨ Spring Boot (Backend API)
@@ -9,14 +9,14 @@ A beautiful Galaxy-Neon themed Movie Explorer built using:
 
 Search, explore, view details, and save your favorite movies — all with a futuristic neon UI.
 
-🚀 Features
-🔍 Search Movies
+**🚀 Features**
+**🔍 Search Movies**
 
 Search any movie, series, or episode.
 
 Results displayed in a futuristic neon grid.
 
-🎬 Movie Details Page
+**🎬 Movie Details Page**
 
 Title, Year, Genre
 
@@ -28,7 +28,7 @@ Plot summary
 
 Neon-styled modern layout
 
-⭐ Favorites System
+**⭐ Favorites System**
 
 Add/remove movies to favorites
 
@@ -36,7 +36,7 @@ Favorites stored in localStorage
 
 Stylish favorites list page
 
-⚡ Performance Features
+**⚡ Performance Features**
 
 Caffeine cache used for API caching
 
@@ -46,29 +46,33 @@ Max entries: 100
 
 API calls reduced significantly
 
-🛰 Navigation Flow
+**🛰 Navigation Flow**
 
 ✔ Search → Results
+
 ✔ Results → Details
+
 ✔ Details → Back (same search results retained)
+
 ✔ Global Favorites Page
+
 ✔ Auto state persistence via localStorage
 
-🔧 Backend Setup
-1️⃣ Configure API Key
+**🔧 Backend Setup**
+**1️⃣ Configure API Key**
 
 Inside application.properties:
 
 omdb.api.key=YOUR_API_KEY
 omdb.api.url=http://www.omdbapi.com/
 
-2️⃣ Install Dependencies
+**2️⃣ Install Dependencies**
 
 Run inside the backend folder:
 
 mvn clean install
 
-3️⃣ Start Backend
+**3️⃣ Start Backend**
 mvn spring-boot:run
 
 
@@ -76,7 +80,7 @@ Backend runs at:
 
 👉 http://localhost:8080
 
-🌐 Frontend Setup
+**🌐 Frontend Setup**
 
 Simply open:
 
@@ -91,14 +95,14 @@ Apache / Nginx
 
 Any static hosting
 
-🖥️ Backend Endpoints
-🔍 Search Movies
+**🖥️ Backend Endpoints**
+**🔍 Search Movies**
 GET /api/movies/search?title=batman
 
-🎬 Get Movie Details
+**🎬 Get Movie Details**
 GET /api/movies/details?id=tt1234567
 
-⚡ Caching (Caffeine In-Memory Cache)
+**⚡ Caching (Caffeine In-Memory Cache)**
 
 Configured in:
 
@@ -114,7 +118,7 @@ Benefits
 ✔ Fewer OMDB API calls
 ✔ Smooth performance
 
-🎨 UI Theme: Galaxy Neon
+**🎨 UI Theme: Galaxy Neon**
 
 Radial galaxy backgrounds
 
@@ -128,8 +132,8 @@ Cyberpunk-inspired movie cards
 
 A visually consistent futuristic interface across all pages.
 
-📱 Pages Overview
-🏠 Home – index.html
+**📱 Pages Overview**
+**🏠 Home – index.html**
 
 Neon welcome screen
 
@@ -138,13 +142,13 @@ Search bar
 Redirects to:
 results.html?query=YOUR_SEARCH_TERM
 
-📄 Results – results.html
+**📄 Results – results.html**
 
 Displays search results in a neon grid
 
 Clicking a movie opens the details page
 
-🎞 Details – details.html
+**🎞 Details – details.html**
 
 Displays full movie details
 
@@ -152,7 +156,7 @@ Add to Favorites
 
 Back button returns to same search results
 
-⭐ Favorites – favorites.html
+**⭐ Favorites – favorites.html**
 
 Shows saved favorite movies
 
@@ -160,8 +164,8 @@ Remove movies from favorites
 
 Neon styled cards
 
-📦 Technologies Used
-Backend
+**📦 Technologies Used**
+**Backend**
 
 Spring Boot 3
 
@@ -171,7 +175,7 @@ RestTemplate
 
 Caffeine Cache
 
-Frontend
+**Frontend**
 
 HTML5
 
