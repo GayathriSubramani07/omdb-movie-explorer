@@ -1,184 +1,166 @@
-🎬 OMDB Movie Explorer
+🌌  OMDB Movie Explorer
 
-A full-stack movie search and details application built using Spring Boot (Java) and a HTML/CSS/JavaScript frontend.
-It integrates with the public OMDB API to fetch movie information, while exposing clean REST APIs, implementing local caching, and providing a modern, responsive UI.
+A beautiful Galaxy-Neon themed Movie Explorer built using:
 
-⭐ Features
-🔍 Search Dashboard
+✨ Spring Boot (Backend API)
+✨ HTML + CSS + JavaScript (Frontend)
+✨ Caffeine In-Memory Cache
+✨ OMDB Public API Integration
 
-Search movies, series, or episodes by title
+Search, explore, view details, and save your favorite movies — all with a futuristic neon UI.
 
-Get instant results with posters, titles, and release years
+🚀 Features
+🔍 Search Movies
 
-🎬 Movie Detail View
+Search any movie, series, or episode.
 
-Full movie details:
+Results shown in a futuristic neon grid.
 
-Plot
+🎬 Movie Details Page
 
-Genre
+Title, Year, Genre
 
-Director
+Director, Actors, Language
 
-Actors
+Box Office, Ratings
 
-IMDb Rating
+Plot summary
 
-Poster
-
-Stylish and responsive design
+Neon-styled layout
 
 ⭐ Favorites System
 
-Add movies to Favorites
+Add/remove movies to local favorites
 
-Saved in localStorage (no backend DB needed)
+Favorites stored in localStorage
 
-Remove favorites anytime
+Beautiful favorites list page
 
-⚡ Performance Features (Backend)
+⚡ Performance Features
 
-Caffeine Cache
+Caffeine cache for API response caching
 
-TTL: 5 minutes
+Cache expiry: 5 minutes
 
-Max size: 100 entries
+Max entries: 100
 
-Reduces OMDB API calls significantly
+OMDB API calls reduced significantly
 
-Clean RESTful endpoints
+🛰 Navigation Flow
 
-API Key handled via application.properties
+✔ Search → Results
+✔ Results → Details
+✔ Details → Back (returns to SAME search results)
+✔ Global Favorites page
+✔ State persistence using localStorage
 
-💻 UI Highlights
+🔧 Backend Setup
 
-Modern gradient theme (Purple → Pink → Blue)
+1️⃣ Configure API Key
 
-Mobile-friendly
-
-Smooth card hover effects
-
-Clean layout for search, results grid, and details page
-
-🗂 Project Structure
-omdb-movie-explorer/
-│
-├── src/
-│   ├── main/
-│   │   ├── java/com/omdb/omdb_movie_explorer/
-│   │   │   ├── OmdbMovieExplorerApplication.java
-│   │   │   ├── config/
-│   │   │   │   ├── CacheConfig.java
-│   │   │   │   └── RestTemplateConfig.java
-│   │   │   ├── controller/
-│   │   │   │   └── MovieController.java
-│   │   │   ├── model/
-│   │   │   │   ├── MovieDetailResponse.java
-│   │   │   │   ├── MovieSearchResponse.java
-│   │   │   │   └── MovieSummary.java
-│   │   │   └── service/
-│   │   │       ├── MovieService.java
-│   │   │       └── MovieServiceImpl.java
-│   │   │
-│   │   └── resources/
-│   │       ├── static/
-│   │       │   ├── index.html
-│   │       │   ├── details.html
-│   │       │   ├── favorites.html
-│   │       │   ├── app.js
-│   │       │   └── style.css
-│   │       └── application.properties
-│   │
-│   └── test/java/...
-│
-├── pom.xml
-└── README.md
-
-🔗 REST API Endpoints (Clean & Simplified)
-Method	Endpoint	Description
-GET	/api/movies/search?title=Batman	Search movies by title
-GET	/api/movies/details?id=tt2975590	Get full movie details by IMDb ID
-
-Backend calls OMDB API internally, applies caching, and returns simplified JSON to the UI.
-
-🚀 How to Run the Project
-1️⃣ Clone the Repository
-git clone https://github.com/GayathriSubramani07/omdb-movie-explorer.git
-cd omdb-movie-explorer
-
-2️⃣ Import into IDE
-
-Open in Eclipse or IntelliJ, import as a Maven Project.
-
-3️⃣ Configure OMDB API Key
-
-Open:
-
-src/main/resources/application.properties
-
-
-Update:
-
+Inside application.properties:
 omdb.api.key=YOUR_API_KEY
 omdb.api.url=http://www.omdbapi.com/
 
+2️⃣ Install Dependencies
 
-Get your key here:
-👉 https://www.omdbapi.com/apikey.aspx
+Run inside backend folder:
+mvn clean install
 
-4️⃣ Run the Backend
-
-Run the Spring Boot app:
-
+3️⃣ Start Backend
 mvn spring-boot:run
 
+Backend runs at:
+http://localhost:8080
 
-or run OmdbMovieExplorerApplication.java directly.
+🌐 Frontend Setup
 
-Backend starts at:
+Simply open:
+frontend/index.html
+Or use Live Server / Apache / Nginx for serving.
 
-http://localhost:8080/
+🖥️ Backend Endpoint
+🔍 Search Movies
+GET /api/movies/search?title=batman
+🎬 Get Movie Details
+GET /api/movies/details?id=tt1234567
 
-5️⃣ Run the UI
+⚡ Caching (Caffeine In-Memory Cache)
 
-Open in browser:
+Configured in:
+CacheConfig.java
+Settings Used:
 
-http://localhost:8080/index.html
+Setting	Value
+Cache Type	Caffeine
+Expiry	5 minutes
+Max Size	100 items
+Benefits:
 
+✔ Faster repeated searches
+✔ Fewer API calls
+✔ Better performance
 
-✔ Search movies
-✔ View details
-✔ Add to favorites
+🎨 UI Theme: Galaxy Neon
 
-📦 Tech Stack
+Radial galaxy backgrounds
+
+Neon gradients
+
+Animated shooting comet
+
+Glowing buttons
+
+Cyberpunk-inspired cards
+
+Every page is built with consistent visual design.
+
+📱 Pages Overview
+🏠 Home (index.html)
+
+Search bar + Neon welcome screen
+
+Redirects to results.html?query=SEARCH_TERM
+
+📄 Results (results.html)
+
+Displays search results in neon grid
+
+Click any movie → details page
+
+🎞 Details (details.html)
+
+Full movie info
+
+Add to Favorites
+
+Back button returns to previous results
+
+⭐ Favorites (favorites.html)
+
+List of all favorite movies
+
+Remove favorites
+
+Neon styled cards
+
+📦 Technologies Used
 Backend
 
-Java 17
-
-Spring Boot
-
-Caffeine Cache
+Spring Boot 3
 
 RestTemplate
 
-Maven
+Caffeine Cache
+
+Java 17+
 
 Frontend
 
 HTML5
 
-CSS3
+CSS3 (Galaxy Neon Theme)
 
-JavaScript (Vanilla)
+Vanilla JavaScript
 
-🧪 Testing
-
-Test using the browser or Postman:
-
-Example:
-
-GET http://localhost:8080/api/movies/search?title=superman
-GET http://localhost:8080/api/movies/details?id=tt2975590
-
-
-
+LocalStorage (Favorites)
