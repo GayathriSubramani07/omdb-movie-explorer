@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Favorites — OMDB Movies</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="galaxy-bg">
+
+  <header class="nav small">
+    <div class="brand">✨ <span>OMDB</span> Movies</div>
+  <div class="nav-actions" style="
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+">
+<a href="#" onclick="goBack()"
+   style="padding:10px 24px; background:linear-gradient(90deg,#7be3ff,#9b6cff);
+          border-radius:14px; color:#08020a; font-weight:700;">
+  ⬅ Back
+</a>
+
+
+    </div>
+  </header>
+
+  <main class="main-container">
+    <h1 class="fav-heading">Your Favorites</h1>
+    <div id="fav-list" class="fav-list"></div>
+  </main>
+
+  <script>
+    function loadFavs() {
+      const list = JSON.parse(localStorage.getItem('favorites')) || [];
+      const container = document.getElementById('fav-list');
+      container.innerHTML = '';
+      if (list.length === 0) {
+        container.innerHTML = '<p class="empty">No favorites yet. Add some ❤️</p>';
+        return;
+      }
+      list.forEach(m => {
+        const poster = m.poster && m.poster !== 'N/A' ? m.poster : 'https://via.placeholder.com/220x320/2b0037/ffffff?text=No+Poster';
+        container.innerHTML += `
+          <div class="fav-card">
+            <img src="${poster}" alt="${m.title}">
+            <div class="fav-meta">
+              <h3>${m.title}</h3>
+              <p class="small">${m.year} • ${m.director || ''}</p>
+              <div class="fav-actions">
+               
+                <button class="btn ghost" onclick="removeFav('${escapeJS(m.title)}')">Remove</button>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function goDetails(title) {
+      // try to find imdbID by calling search and opening first result
+      fetch(`http://localhost:8080/api/movies/search?title=${encodeURIComponent(title)}`)
+        .then(r => r.json())
+        .then(data => {
+          const results = data.search || data.Search;
+          if (results && results.length) {
+            window.location.href = `details.html?id=${results[0].imdbID}`;
+          } else alert('Details not found.');
+        })
+        .catch(() => alert('Error finding movie details.'));
+    }
+    function goBack(){
+    	   const last = localStorage.getItem("lastSearch");
+    	   if(last)
+    	       window.location.href = `results.html?query=${last}`;
+    	   else
+    	       window.location.href = "index.html";
+    	}
+    function removeFav(title) {
+      let list = JSON.parse(localStorage.getItem('favorites')) || [];
+      list = list.filter(m => m.title !== title);
+      localStorage.setItem('favorites', JSON.stringify(list));
+      loadFavs();
+    }
+
+    function escapeJS(s) { return (s||'').replace(/'/g,"\\'").replace(/"/g,'\\"'); }
+
+    loadFavs();
+  </script>
+</body>
+</html>

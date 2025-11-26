@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Results — OMDB Movies</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="galaxy-bg">
+
+  <header class="nav">
+    <div class="brand">✨ <span>OMDB</span> Movies</div>
+
+    <div class="nav-actions">
+
+      <a href="index.html"
+        style="padding: 10px 24px; background: linear-gradient(90deg,#7be3ff,#9b6cff);
+               border-radius: 14px; color:#08020a; font-weight:700; text-decoration:none;
+               box-shadow:0 8px 25px rgba(155,108,255,0.35);">
+        ⬅ Back to Search
+      </a>
+
+      <a href="favorites.html"
+        style="padding: 10px 22px; border-radius:14px; font-weight:700; text-decoration:none;
+               color:#7be3ff; border:1px solid rgba(123,227,255,0.4);
+               background:rgba(255,255,255,0.03); backdrop-filter:blur(4px);">
+        ⭐ Favorites
+      </a>
+
+    </div>
+  </header>
+
+  <h2 id="search-title"
+      style="text-align:center; margin-top:20px; color:var(--neon);
+             font-size:28px; text-shadow:0 0 15px rgba(155,108,255,0.5);">
+  </h2>
+
+  <main class="main-container">
+    <section id="results" class="results-grid"></section>
+  </main>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const query = params.get("query");
+
+  // ⭐ Store last search for BACK BUTTON logic
+  localStorage.setItem("lastSearch", query);
+
+  document.getElementById("search-title").innerHTML =
+      `Search Results for: <strong>${query}</strong>`;
+
+  fetch(`http://localhost:8080/api/movies/search?title=${query}`)
+    .then(res => res.json())
+    .then(data => displayMovies(data.search || data.Search))
+    .catch(err => console.error(err));
+
+
+  function displayMovies(movies) {
+    const container = document.getElementById("results");
+
+    if (!movies) {
+      container.innerHTML = `<p class="empty">No results found.</p>`;
+      return;
+    }
+
+    container.innerHTML = "";
+
+    movies.forEach(movie => {
+      const poster = movie.Poster !== "N/A"
+        ? movie.Poster
+        : "https://via.placeholder.com/200x300/2b0037/ffffff?text=No+Image";
+
+      container.innerHTML += `
+        <div class="movie-card" onclick="openDetails('${movie.imdbID}')">
+          <img src="${poster}">
+          <div class="movie-meta">
+            <div class="movie-title">${movie.Title}</div>
+            <div class="movie-year">${movie.Year}</div>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  function openDetails(id) {
+    window.location.href = `details.html?id=${id}`;
+  }
+</script>
+
+</body>
+</html>

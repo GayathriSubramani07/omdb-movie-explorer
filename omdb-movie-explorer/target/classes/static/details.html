@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Details — OMDB Movies</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="galaxy-bg">
+
+<header class="nav small">
+  <div class="brand">✨ <span>OMDB</span> Movies</div>
+
+  <div class="nav-actions" style="
+      display:flex; align-items:center; justify-content:center; gap:18px;
+  ">
+
+    <!-- ⭐ BACK BUTTON — dynamic → NOT FIXED PAGE -->
+    <a href="#" onclick="goBack()"
+       style="padding: 10px 24px; background: linear-gradient(90deg,#7be3ff,#9b6cff);
+              border-radius: 14px; color:#08020a; font-weight:700; text-decoration:none;
+              box-shadow:0 8px 25px rgba(155,108,255,0.35);">
+      ⬅ Back
+    </a>
+
+    <a href="favorites.html"
+       style="padding: 10px 22px; border-radius:14px; font-weight:700; text-decoration:none;
+              color:#7be3ff; border:1px solid rgba(123,227,255,0.4);
+              background:rgba(255,255,255,0.03); backdrop-filter:blur(4px);">
+      ⭐ Favorites
+    </a>
+
+  </div>
+</header>
+
+
+<main class="main-container">
+  <div id="details-wrap" class="details-wrap"></div>
+</main>
+
+
+<script>
+function goBack() {
+  const last = localStorage.getItem("lastSearch");
+  if (last)
+      window.location.href = `results.html?query=${last}`;
+  else
+      window.location.href = "index.html";
+}
+
+function getId() {
+  return new URLSearchParams(window.location.search).get("id");
+}
+
+function loadDetails() {
+  const id = getId();
+  if (!id) { 
+    document.getElementById('details-wrap').innerHTML = '<p class="empty">No movie id provided.</p>';
+    return;
+  }
+
+  fetch(`http://localhost:8080/api/movies/details?id=${id}`)
+    .then(r => r.json())
+    .then(m => show(m))
+    .catch(err => {
+      console.error(err);
+      document.getElementById("details-wrap").innerHTML = `<p class="empty">Error loading details.</p>`;
+    });
+}
+
+function show(m) {
+  const poster = m.poster !== "N/A" ? m.poster :
+    "https://via.placeholder.com/350x520/2b0037/ffffff?text=No+Poster";
+
+  document.getElementById("details-wrap").innerHTML = `
+    <div class="details-card">
+      <div class="poster-col">
+        <img src="${poster}" />
+      </div>
+
+      <div class="info-col">
+        <h2 class="movie-title">${m.title}</h2>
+        <p class="meta"><strong>${m.year}</strong> • ${m.genre}</p>
+
+        <div class="actions-row">
+          <button class="btn neon"
+            onclick="addFav('${escapeJS(m.title)}','${poster}','${escapeJS(m.year)}','${escapeJS(m.director)}','${escapeJS(m.plot)}')">
+            ❤️ Add to Favorites
+          </button>
+
+          <span class="rating">⭐ ${m.imdbRating}</span>
+        </div>
+
+        <p><strong>Director:</strong> ${m.director}</p>
+        <p><strong>Actors:</strong> ${m.actors}</p>
+        <p><strong>Language:</strong> ${m.language}</p>
+        <p><strong>Box Office:</strong> ${m.boxOffice}</p>
+      </div>
+    </div>
+
+    <section class="plot neon-box">
+      <h3>Plot</h3>
+      <p>${m.plot}</p>
+    </section>
+  `;
+}
+
+function escapeJS(s) {
+  return (s || '').replace(/'/g, "\\'");
+}
+
+function addFav(title, poster, year, director, plot) {
+  let fav = JSON.parse(localStorage.getItem("favorites")) || [];
+  if (fav.some(m => m.title === title)) {
+    alert("Already in favorites!");
+    return;
+  }
+  fav.push({ title, poster, year, director, plot });
+  localStorage.setItem("favorites", JSON.stringify(fav));
+  alert("Added to Favorites ❤️");
+}
+
+loadDetails();
+</script>
+
+</body>
+</html>

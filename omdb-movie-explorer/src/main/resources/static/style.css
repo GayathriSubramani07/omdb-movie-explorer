@@ -1,0 +1,91 @@
+/* ---------- Galaxy Purple Neon Theme (shared) ---------- */
+
+/* base */
+:root{
+  --bg1: #0a0014;
+  --bg2: #2b0037;
+  --neon: #9b6cff;
+  --neon2: #7be3ff;
+  --card: rgba(255,255,255,0.04);
+  --muted: rgba(255,255,255,0.75);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family: Inter, system-ui, Arial; background: radial-gradient(circle at 10% 10%, #120021 0%, #0a0014 30%, #06000a 100%), linear-gradient(180deg, rgba(43,0,55,0.08), transparent 30%); color: #eae6ff; min-height:100vh;}
+
+/* subtle starfield */
+body::before{
+  content:""; position:fixed; inset:0; background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 30px 30px; opacity:0.12; pointer-events:none; mix-blend-mode:screen;
+}
+
+/* NAV */
+.nav{display:flex;justify-content:space-between;align-items:center;padding:22px 28px; gap: 16px;}
+.nav.small{padding:12px 20px;}
+.brand{font-weight:700;font-size:20px;color:var(--neon);}
+.brand span{color:var(--neon2);margin-left:6px;font-weight:600}
+
+.nav-actions{display:flex;align-items:center;gap:12px}
+#searchInput{width:360px;padding:12px 16px;border-radius:999px;border:1px solid rgba(255,255,255,0.06);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.04));color:#fff;outline:none;box-shadow:0 4px 18px rgba(107,62,163,0.12)}
+#searchInput::placeholder{color:#d8cfff}
+#searchBtn, .btn{background:linear-gradient(90deg,var(--neon),var(--neon2));border:none;color:#08020a;padding:10px 16px;border-radius:12px;font-weight:700;cursor:pointer;box-shadow:0 8px 30px rgba(155,108,255,0.18);transition:transform .18s ease,box-shadow .18s}
+#searchBtn:hover, .btn:hover{transform:translateY(-3px);box-shadow:0 18px 50px rgba(123,227,255,0.16)}
+.fav-link{padding:8px 14px;border-radius:12px;background:transparent;color:var(--neon2);text-decoration:none;border:1px solid rgba(123,227,255,0.08)}
+
+.main-container{max-width:1200px;margin:28px auto;padding:0 18px}
+
+/* welcome */
+.welcome{grid-column:1/-1;padding:80px 20px;text-align:center}
+.welcome h1{font-size:38px;color:var(--neon);text-shadow:0 6px 30px rgba(123,80,255,0.18)}
+.welcome p{color:#c9bff7;margin-top:12px}
+
+/* results grid */
+.results-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:22px}
+.movie-card{background:var(--card);border-radius:14px;padding:10px;overflow:hidden;cursor:pointer;transition:transform .18s,box-shadow .18s;border:1px solid rgba(155,108,255,0.06)}
+.movie-card:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(123,80,255,0.18);border-color:rgba(123,80,255,0.18)}
+.movie-card img{width:100%;height:300px;object-fit:cover;border-radius:10px}
+.movie-meta{padding:10px}
+.movie-title{font-weight:700;font-size:16px;color:#fff;letter-spacing:.2px}
+.movie-year{color:#cbbef8;margin-top:6px;font-size:13px}
+
+/* details */
+.details-wrap{max-width:1100px;margin:30px auto}
+.details-card{display:flex;gap:26px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));padding:22px;border-radius:16px;border:1px solid rgba(155,108,255,0.06)}
+.poster-col img{width:320px;border-radius:12px;box-shadow:0 18px 60px rgba(123,80,255,0.12)}
+.info-col{flex:1}
+.movie-title{font-size:28px}
+.meta{color:#d9cfff;margin:8px 0}
+.actions-row{display:flex;align-items:center;gap:12px;margin:12px 0}
+.rating{background:rgba(255,255,255,0.03);padding:8px 12px;border-radius:12px;color:#fff}
+
+/* neon boxes */
+.neon-box{margin-top:20px;padding:18px;border-radius:12px;border-left:4px solid var(--neon);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03))}
+
+/* favorites list */
+.fav-heading{text-align:center;color:var(--neon);font-size:28px;margin-bottom:18px}
+.fav-list{display:grid;grid-template-columns:1fr;gap:16px;max-width:900px;margin:10px auto}
+.fav-card{display:flex;gap:14px;padding:12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));align-items:center;border:1px solid rgba(123,80,255,0.06)}
+.fav-card img{width:120px;height:170px;object-fit:cover;border-radius:10px}
+.fav-meta h3{margin-bottom:6px}
+.fav-actions{display:flex;gap:10px;margin-top:8px}
+
+/* empty */
+.empty{text-align:center;color:#cdbaf8;padding:40px;font-size:18px}
+
+/* responsive */
+@media (max-width:880px){
+  #searchInput{width:220px}
+  .results-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+  .poster-col img{width:220px}
+  .movie-card img{height:230px}
+}
+
+/* subtle animated comet */
+@keyframes comet {
+  0%{transform:translateX(-40vw) translateY(-20vh) rotate(20deg); opacity:0}
+  50%{opacity:1}
+  100%{transform:translateX(120vw) translateY(40vh) rotate(200deg); opacity:0}
+}
+body::after{
+  content:""; position:fixed; left:-20%; top:-10%; width:8px; height:160px; background:linear-gradient(180deg, rgba(123,227,255,0.9), rgba(155,108,255,0.1)); filter:blur(8px); transform:rotate(20deg); opacity:0.06; animation:comet 14s linear infinite;
+}
