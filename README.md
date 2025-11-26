@@ -59,6 +59,7 @@ API calls reduced significantly
 ✔ Auto state persistence via localStorage
 
 **🔧 Backend Setup**
+
 **1️⃣ Configure API Key**
 
 Inside application.properties:
@@ -89,13 +90,10 @@ frontend/index.html
 
 Or serve using:
 
-Live Server (VS Code)
-
-Apache / Nginx
-
-Any static hosting
+Live Server (VS Code) Apache / Nginx Any static hosting
 
 **🖥️ Backend Endpoints**
+
 **🔍 Search Movies**
 GET /api/movies/search?title=batman
 
@@ -115,8 +113,11 @@ Max Size	100
 Benefits
 
 ✔ Faster repeated searches
+
 ✔ Fewer OMDB API calls
+
 ✔ Smooth performance
+
 
 **🎨 UI Theme: Galaxy Neon**
 
